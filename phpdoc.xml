@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title><![CDATA[Documentation]]></title>
+    <parser>
+        <target>doc/parser</target>
+    </parser>
+    <transformer>
+        <target>doc/api</target>
+    </transformer>
+    <!--
+    <transformations>
+        <template name="responsive" />
+    </transformations>
+    -->
+    <files>
+        <directory>./src</directory>
+    </files>
+    <logging>
+        <level>warn</level>
+        <paths>
+            <default>./doc/log/default.log</default>
+            <errors>./doc/log/errors.log</errors>
+            <warnings>./doc/log/warnings.log</warnings>
+        </paths>
+    </logging>
+
+</phpdoc>

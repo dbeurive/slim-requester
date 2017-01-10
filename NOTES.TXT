@@ -1,0 +1,17 @@
+Creating the artifact
+
+    zip -r dbeurive-slim-requester-1.0.0.zip src composer.json
+
+Using the artifact
+
+The artifacts are stored under the directory "/path/to/the/artifacts".
+
+Add these lines in the file "composer.json":
+
+    "repositories": [
+        {
+            "type": "artifact",
+            "url": "/path/to/the/artifacts"
+        }
+    ],
+

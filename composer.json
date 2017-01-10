@@ -1,0 +1,27 @@
+{ "name": "dbeurive/slim-requester",
+  "version": "1.0.0",
+  "description": "This package contains a tool that allows you to perform requests to your Slim application by bypassing the WEB server.",
+  "license": "Creative Commons Attribution 4.0 International Public License",
+  "autoload": {
+    "psr-4": {
+      "dbeurive\\Slim\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+    }
+  },
+  "repositories": [
+    {
+      "type": "artifact",
+      "url": "/home/denis/Desktop/tools/artifact"
+    }
+  ],
+  "require": {
+    "slim/slim": "^3.0",
+    "dbeurive/slim-phpunit": "1.0.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": ">=5.5.0"
+  }
+}

@@ -92,10 +92,10 @@ class Requester
      *        Please note that this function will be executed through a call to "call_user_function()".
      * @throws \Exception
      */
-    public function __construct(App $inApplication, $inSlimAppRunner)
+    public function __construct(App $inApplication/*, $inSlimAppRunner*/)
     {
         $this->__application = $inApplication;
-        $this->__appRunner = $inSlimAppRunner;
+        // $this->__appRunner = $inSlimAppRunner;
     }
 
     /**
@@ -226,11 +226,15 @@ class Requester
         }
 
         // Run the Slim application.
-        $app = call_user_func($this->__appRunner, $this->__application);
+        $this->__application->run();
+        // $app = call_user_func($this->__appRunner, $this->__application);
 
         // Store the request and the response for later use in the unit tests.
-        $this->__request = $app->getContainer()->get('request');
-        $this->__response = $app->getContainer()->get('response');
+        $this->__request = $this->__application->getContainer()->get('request');
+        $this->__response = $this->__application->getContainer()->get('response');
+
+        // $this->__request = $app->getContainer()->get('request');
+        // $this->__response = $app->getContainer()->get('response');
 
         $this->__stdout = ob_get_clean();
         return $this->__stdout;

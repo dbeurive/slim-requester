@@ -1,18 +1,12 @@
 <?php
 
-use dbeurive\Slim\Requester;
 use dbeurive\Slim\PHPUnit\TestCase;
 
-require_once implode(DIRECTORY_SEPARATOR, array(__DIR__, '..', 'www', 'Index.php'));
+require_once __DIR__ . DIRECTORY_SEPARATOR . 'AppInit.php';
 
 class JsonRpcTest extends TestCase
 {
-    /** @var Requester */
-    private $__Requester;
-
-    public function setUp() {
-        $this->__Requester = new Requester(new \Slim\App(array()), 'Index::run');
-    }
+    use AppInit;
 
     public function testHello() {
         $parameters = ['firstname' => 'Mickey', 'lastname' => 'Mouse'];

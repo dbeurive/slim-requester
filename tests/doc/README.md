@@ -27,7 +27,7 @@ Go into _this directory_ (`Slim/tests/doc`) and run the script `virtual-hosts.ph
 
 This will generate the virtual host configuration files for Apache 2.4.
 
-Copy the file configuration files into the right location.
+Copy the configuration file into the right location.
   
     sudo cp *.conf /etc/apache2/sites-available/
 
@@ -36,25 +36,25 @@ Copy the file configuration files into the right location.
 
 Configure your local DNS (/etc/hosts):
 
-    127.0.0.1   localhost slim.localhost www.slim.localhost
+    127.0.0.1   localhost slim-requester.localhost www.slim-requester.localhost
     
 Activate the new configuration:
 
-    sudo a2ensite slim.localhost
+    sudo a2ensite slim-requester.localhost
     sudo service apache2 restart
 
 > Please note that the procedure to restart Apache depends on your system.
 
 Test your configuration: 
 
-    $ curl http://www.slim.localhost/get/toto
+    $ curl http://www.slim-requester.localhost/get/toto
     
 You should get the string "`Hello, toto`".
 
 ## Testing the application
 
-| Route         | URL to use for test                  |
-|---------------|--------------------------------------|
-| /get/{name}   | http://www.slim.localhost/get/toto   |
-| /post         | http://www.slim.localhost/post       |
-| /jsonrpc      | http://www.slim.localhost/jsonrpc    |
+| Route         | URL to use for test                            |
+|---------------|------------------------------------------------|
+| /get/{name}   | http://www.slim-requester.localhost/get/toto   |
+| /post         | http://www.slim-requester.localhost/post.html  |
+| /jsonrpc      | http://www.slim-requester.localhost/jsonrpc    |

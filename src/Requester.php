@@ -2,32 +2,6 @@
 
 /**
  * This file implements the "software requester" for Slim V3.
- *
- * Please note that the use of this component requires that you encapsulate the
- * code that performs the actions listed below into a function:
- *
- *      (1) defines the routes.
- *      (2) executes your Slim application.
- *
- * This function must have the following signature:
- *
- *      /Slim/App function(/Slim/App $inApplication)
- *
- * Example:
- *
- *      function (/Slim/App $inApplication) {
- *
- *          // Define the routes.
- *          $inApplication->get('/hello/{name}', function (Request $request, Response $response) {
- *              $name = $request->getAttribute('name');
- *              $response->getBody()->write("Hello, $name");
- *              return $response;
- *          });
- *
- *          // Run the application.
- *          $inApplication->run();
- *          return $inApplication;
- *      }
  */
 
 namespace dbeurive\Slim;
@@ -64,11 +38,6 @@ class Requester
      * @note This variable is used to initialise the container (for the dependency injection).
      */
     private $__application;
-    /**
-     * @var callable|array The function that runs the Slim application.
-     * @see Runner::__construct for details about this function.
-     */
-    private $__appRunner;
     /** @var Request HTTP request. */
     private $__request;
     /** @var Response HTTP response. */
@@ -80,22 +49,11 @@ class Requester
      * SoftRequester constructor.
      *
      * @param App $inApplication The Slim application.
-     * @param callable|array $inSlimAppRunner The function that runs the Slim application.
-     *        This function performs the following operations:
-     *        - Create and initialise the Slim application.
-     *        - Define the routes to test.
-     *        - Run the application.
-     *        - Return the instance of the Slim application.
-     *        The function's signature must be:
-     *        /Slim/App function(array $inConfiguration)
-     *        $inConfiguration is used to initialise the container (for the dependency injection).
-     *        Please note that this function will be executed through a call to "call_user_function()".
      * @throws \Exception
      */
-    public function __construct(App $inApplication/*, $inSlimAppRunner*/)
+    public function __construct(App $inApplication)
     {
         $this->__application = $inApplication;
-        // $this->__appRunner = $inSlimAppRunner;
     }
 
     /**
@@ -227,14 +185,10 @@ class Requester
 
         // Run the Slim application.
         $this->__application->run();
-        // $app = call_user_func($this->__appRunner, $this->__application);
 
         // Store the request and the response for later use in the unit tests.
         $this->__request = $this->__application->getContainer()->get('request');
         $this->__response = $this->__application->getContainer()->get('response');
-
-        // $this->__request = $app->getContainer()->get('request');
-        // $this->__response = $app->getContainer()->get('response');
 
         $this->__stdout = ob_get_clean();
         return $this->__stdout;

@@ -1,5 +1,5 @@
 { "name": "dbeurive/slim-requester",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This package contains a tool that allows you to perform requests to your Slim application by bypassing the WEB server.",
   "license": "Creative Commons Attribution 4.0 International Public License",
   "autoload": {
